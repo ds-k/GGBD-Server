@@ -1,0 +1,19 @@
+{
+  "name": "ggbd-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daeseongkim05/GGBD-Server.git"
+  },
+  "author": "Daeseong kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daeseongkim05/GGBD-Server/issues"
+  },
+  "homepage": "https://github.com/daeseongkim05/GGBD-Server#readme"
+}
