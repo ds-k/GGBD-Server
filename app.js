@@ -19,10 +19,6 @@ app.use(cors(corsOption));
 
 app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`GGBD server app listening at http://localhost:${port}`);
