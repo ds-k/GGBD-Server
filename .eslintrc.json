@@ -10,7 +10,10 @@
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "impliedStric": true
+    }
   },
   "rules": {
     "prettier/prettier": "error"

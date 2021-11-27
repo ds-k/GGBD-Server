@@ -5,7 +5,7 @@ const express = require("express");
 const router = require("./routes");
 
 const app = express();
-const port = 80;
+const port = process.env.NODE_ENV === "production" ? 80 : 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +20,13 @@ app.use(cors(corsOption));
 app.use("/", router);
 
 app.listen(port, () => {
+  if (process.env.NODE_ENV === "production") {
+    // eslint-disable-next-line no-console
+    console.log("Production Mode");
+  } else if (process.env.NODE_ENV === "development") {
+    // eslint-disable-next-line no-console
+    console.log("Development Mode");
+  }
   // eslint-disable-next-line no-console
   console.log(`GGBD server app listening at http://localhost:${port}`);
 });
