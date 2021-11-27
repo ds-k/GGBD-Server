@@ -3,13 +3,13 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class departments_replies extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      departments_replies.belongsTo(models.users, {
+        foreignKey: "users_id",
+      });
+      departments_replies.belongsTo(models.departments, {
+        foreignKey: "departments_id",
+      });
     }
   }
   departments_replies.init(
