@@ -3,6 +3,7 @@ const detail = require("./detail");
 const post = require("./post");
 const update = require("./update");
 const remove = require("./remove");
+const reply = require("./reply");
 
 module.exports = {
   get,
@@ -10,4 +11,5 @@ module.exports = {
   post,
   update,
   remove,
+  reply,
 };
