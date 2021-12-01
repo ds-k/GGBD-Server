@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const { login, get, logout, update } = require("../controllers/user");
 
 router.get("/", get); // * 유저 정보
