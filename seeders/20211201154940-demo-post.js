@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert("posts", [
       {
         users_id: 1,
-        weather: 0,
+        weather: "sunny",
         title: "근로조건의 기준은 인간의 존엄",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         users_id: 2,
-        weather: 0,
+        weather: "sunny",
         title: "한 회계연도를 넘어 계속하여 지출할 필요가",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         users_id: 3,
-        weather: 0,
+        weather: "sunny",
         title: "대통령은 법률이 정하는 바에 의하여 훈장",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -63,7 +63,7 @@ module.exports = {
       },
       {
         users_id: 4,
-        weather: 0,
+        weather: "sunny",
         title: "대통령은 법률이 정하는 바에 의하여",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -82,7 +82,7 @@ module.exports = {
       },
       {
         users_id: 5,
-        weather: 2,
+        weather: "rainy",
         title: "근로조건의 기준은 인간의 존엄",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -101,7 +101,7 @@ module.exports = {
       },
       {
         users_id: 6,
-        weather: 2,
+        weather: "rainy",
         title: "한 회계연도를 넘어 계속하여 지출할 필요가",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -120,7 +120,7 @@ module.exports = {
       },
       {
         users_id: 7,
-        weather: 1,
+        weather: "cloudy",
         title: "대통령은 법률이 정하는 바에 의하여 훈장",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -139,7 +139,7 @@ module.exports = {
       },
       {
         users_id: 8,
-        weather: 1,
+        weather: "cloudy",
         title: "대통령은 법률이 정하는 바에 의하여",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -158,7 +158,7 @@ module.exports = {
       },
       {
         users_id: 1,
-        weather: 1,
+        weather: "cloudy",
         title: "근로조건의 기준은 인간의 존엄",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -177,7 +177,7 @@ module.exports = {
       },
       {
         users_id: 2,
-        weather: 2,
+        weather: "rainy",
         title: "한 회계연도를 넘어 계속하여 지출할 필요가",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -196,7 +196,7 @@ module.exports = {
       },
       {
         users_id: 3,
-        weather: 2,
+        weather: "rainy",
         title: "대통령은 법률이 정하는 바에 의하여 훈장",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -215,7 +215,7 @@ module.exports = {
       },
       {
         users_id: 4,
-        weather: 2,
+        weather: "rainy",
         title: "대통령은 법률이 정하는 바에 의하여",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -234,7 +234,7 @@ module.exports = {
       },
       {
         users_id: 5,
-        weather: 0,
+        weather: "sunny",
         title: "근로조건의 기준은 인간의 존엄",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -253,7 +253,7 @@ module.exports = {
       },
       {
         users_id: 6,
-        weather: 2,
+        weather: "rainy",
         title: "한 회계연도를 넘어 계속하여 지출할 필요가",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -272,7 +272,7 @@ module.exports = {
       },
       {
         users_id: 7,
-        weather: 1,
+        weather: "cloudy",
         title: "대통령은 법률이 정하는 바에 의하여 훈장",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",
@@ -291,7 +291,7 @@ module.exports = {
       },
       {
         users_id: 8,
-        weather: 0,
+        weather: "sunny",
         title: "대통령은 법률이 정하는 바에 의하여",
         description:
           "소담스러운 밝은 그림자는 봄바람이다. 천지는 품었기 피가 아니한 같지 관현악이며",

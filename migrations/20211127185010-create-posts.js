@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       weather: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       title: {
         type: Sequelize.STRING,

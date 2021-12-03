@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   posts.init(
     {
       users_id: DataTypes.INTEGER,
-      weather: DataTypes.INTEGER,
+      weather: DataTypes.STRING,
       title: DataTypes.STRING,
       description: DataTypes.STRING,
       body: DataTypes.TEXT,
