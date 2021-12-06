@@ -1,10 +1,12 @@
-const login = require("./login");
+const kakaoLogin = require("./kakaoLogin");
+const googleLogin = require("./googleLogin");
 const get = require("./get");
 const logout = require("./logout");
 const update = require("./update");
 
 module.exports = {
-  login,
+  kakaoLogin,
+  googleLogin,
   get,
   logout,
   update,
