@@ -1,3 +1,3 @@
 module.exports = async (req, res) => {
-  res.json("kakaoLogin");
+  res.json("googleCallback");
 };
