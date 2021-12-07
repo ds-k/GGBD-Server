@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     });
 
     const [user] = await users.findOrCreate({
-      where: { id: userInfo.data.id },
+      where: { social_id: userInfo.data.id },
       defaults: {
         nickname: userInfo.data.properties.nickname,
         img: userInfo.data.properties.profile_image,
