@@ -3,6 +3,7 @@ module.exports = async (req, res) => {
     process.env.NODE_ENV === "production"
       ? process.env.PROD_REACT_CLIENT
       : process.env.DEV_REACT_CLIENT;
-  const { code } = req.query;
-  res.redirect(`${clientUrl}/?code=${code}`);
+  const { code, state } = req.query;
+
+  res.redirect(`${clientUrl}/?code=${code}&state=${state}`);
 };
