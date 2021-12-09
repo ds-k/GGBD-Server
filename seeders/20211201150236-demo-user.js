@@ -76,6 +76,24 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        social_id: "9",
+        nickname: "에어팟",
+        img: "https://images.unsplash.com/photo-1494200483035-db7bc6aa5739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
+        description: "안녕하세요. 저는 에어팟입니다.",
+        loginType: "kakao",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        social_id: "10",
+        nickname: "맥북",
+        img: "https://images.unsplash.com/photo-1494200483035-db7bc6aa5739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
+        description: "안녕하세요. 저는 맥북입니다.",
+        loginType: "google",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
