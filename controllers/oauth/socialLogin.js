@@ -54,7 +54,8 @@ module.exports = async (req, res) => {
       httpOnly: true,
       sameSite: "none",
     });
-    res.header("accessToken", accessToken).status(200).json(payload);
+
+    res.status(200).json({ accessToken, ...payload });
   } catch (e) {
     res.status(500).send({ message: e.message });
   }
