@@ -3,12 +3,11 @@ const { posts } = require("../../models");
 const { departments } = require("../../models");
 
 module.exports = async (req, res) => {
-  const { department } = req.params;
-  const { offset, limit } = req.query;
-  const departmentId = department.split("-")[1];
+  // const { department } = req.params;
+  const { offset, limit, id } = req.query;
 
   try {
-    if (department === "모든-글") {
+    if (id === "0") {
       const data = await posts.findAll({
         offset: Number(offset),
         limit: Number(limit),
@@ -19,7 +18,7 @@ module.exports = async (req, res) => {
         offset: Number(offset),
         limit: Number(limit),
         where: {
-          id: departmentId,
+          id,
         },
         attributes: [],
         include: {
