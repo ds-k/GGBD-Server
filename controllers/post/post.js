@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
             departments_id: departmentId,
           });
         }
-        res.status(201).json({ message: "ok", data: result.dataValues.slug });
+        res.status(201).json({ message: "ok", slug: result.dataValues.slug });
       }
     });
   } catch (e) {
