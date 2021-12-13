@@ -6,8 +6,9 @@ module.exports = async (req, res) => {
   const { department } = req.params;
   const { offset, limit } = req.query;
   const departmentId = department.split("-")[1];
+
   try {
-    if (department === "전체") {
+    if (department === "모든-글") {
       const data = await posts.findAll({
         offset: Number(offset),
         limit: Number(limit),

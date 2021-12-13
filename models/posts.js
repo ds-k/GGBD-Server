@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       allow_reply: DataTypes.BOOLEAN,
       is_reported: DataTypes.INTEGER,
       is_blocked: DataTypes.BOOLEAN,
-      link: DataTypes.STRING,
+      slug: DataTypes.STRING,
     },
     {
       sequelize,
