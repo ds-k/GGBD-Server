@@ -1,4 +1,8 @@
-module.exports = (req, res) => {
+const { posts } = require("../../models");
+
+module.exports = async (req, res) => {
   const { slug } = req.params;
-  res.send(slug);
+  const postData = await posts.findOne({ where: { slug } });
+
+  res.status(200).json(postData);
 };
