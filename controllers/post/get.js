@@ -3,16 +3,59 @@ const { posts } = require("../../models");
 const { departments } = require("../../models");
 
 module.exports = async (req, res) => {
-  // const { department } = req.params;
-  const { offset, limit, id } = req.query;
+  const { offset, limit, id, weather, by } = req.query;
+  console.log(by);
+  const weatherObj = {
+    전체: "undefined",
+    맑음: "sunny",
+    구름: "cloudy",
+    비: "rainy",
+  };
 
   try {
-    if (id === "0") {
-      const data = await posts.findAll({
+    if (
+      weather !== "undefined" &&
+      weather !== "" &&
+      weather !== "전체" &&
+      id !== "0"
+    ) {
+      const data = await departments.findAll({
         offset: Number(offset),
         limit: Number(limit),
+        where: {
+          id,
+        },
+        attributes: [],
+        include: {
+          model: posts,
+          where: {
+            weather: weatherObj[weather],
+          },
+        },
       });
-      res.status(200).send(data);
+      if (data.length !== 0) {
+        const revised = data[0].posts;
+        res.status(200).json(revised);
+      } else {
+        res.status(200).json(data);
+      }
+    } else if (id === "0") {
+      if (weather !== "undefined" && weather !== "" && weather !== "전체") {
+        const data = await posts.findAll({
+          offset: Number(offset),
+          limit: Number(limit),
+          where: {
+            weather: weatherObj[weather],
+          },
+        });
+        res.status(200).json(data);
+      } else {
+        const data = await posts.findAll({
+          offset: Number(offset),
+          limit: Number(limit),
+        });
+        res.status(200).json(data);
+      }
     } else {
       const data = await departments.findAll({
         offset: Number(offset),
@@ -25,8 +68,13 @@ module.exports = async (req, res) => {
           model: posts,
         },
       });
-      const revised = data[0].posts;
-      res.status(200).send(revised);
+
+      if (data.length !== 0) {
+        const revised = data[0].posts;
+        res.status(200).json(revised);
+      } else {
+        res.status(200).json(data);
+      }
     }
   } catch (e) {
     res.status(501).json({ message: e.message });
