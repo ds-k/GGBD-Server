@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     구름: "cloudy",
     비: "rainy",
   };
+  // const order = by !== undefined && by === "createdAt" ? "DESC" : "ASC";
 
   try {
     if (
@@ -19,6 +20,7 @@ module.exports = async (req, res) => {
       weather !== "전체" &&
       id !== "0"
     ) {
+      // 날씨에 따라 각 진료과 id별로 보내주는 쿼리
       const data = await departments.findAll({
         offset: Number(offset),
         limit: Number(limit),
@@ -32,6 +34,7 @@ module.exports = async (req, res) => {
             weather: weatherObj[weather],
           },
         },
+        // order: [`${by}`, `${order}`],
       });
       if (data.length !== 0) {
         const revised = data[0].posts;
@@ -40,6 +43,7 @@ module.exports = async (req, res) => {
         res.status(200).json(data);
       }
     } else if (id === "0") {
+      // 날씨가 지정된 경우
       if (weather !== "undefined" && weather !== "" && weather !== "전체") {
         const data = await posts.findAll({
           offset: Number(offset),
@@ -50,6 +54,7 @@ module.exports = async (req, res) => {
         });
         res.status(200).json(data);
       } else {
+        // 날씨 관계없이 모든 글
         const data = await posts.findAll({
           offset: Number(offset),
           limit: Number(limit),
@@ -57,6 +62,7 @@ module.exports = async (req, res) => {
         res.status(200).json(data);
       }
     } else {
+      // 날씨 관계없이 진료과에 따라
       const data = await departments.findAll({
         offset: Number(offset),
         limit: Number(limit),
