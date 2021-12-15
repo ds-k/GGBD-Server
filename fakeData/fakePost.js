@@ -34,8 +34,6 @@ const fakePost = (count) => {
       description: faker.lorem.sentence(7).replace(/·/gi, ""),
       body: `<h1>테스트</h1>${faker.lorem.paragraphs(15, "<br>")}`,
       thumbnail: imgSample[i % 15],
-      likes: 0,
-      scraps: 0,
       public: true,
       allow_reply: true,
       is_reported: 0,

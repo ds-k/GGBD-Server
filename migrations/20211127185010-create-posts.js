@@ -12,6 +12,9 @@ module.exports = {
       users_id: {
         type: Sequelize.INTEGER,
       },
+      departments_id: {
+        type: Sequelize.INTEGER,
+      },
       weather: {
         type: Sequelize.STRING,
       },
@@ -26,12 +29,6 @@ module.exports = {
       },
       thumbnail: {
         type: Sequelize.STRING,
-      },
-      likes: {
-        type: Sequelize.INTEGER,
-      },
-      scraps: {
-        type: Sequelize.INTEGER,
       },
       public: {
         type: Sequelize.BOOLEAN,

@@ -1,85 +1,128 @@
 /* eslint-disable camelcase */
 const { posts } = require("../../models");
-const { departments } = require("../../models");
+const { users } = require("../../models");
+const { likes } = require("../../models");
+const { scraps } = require("../../models");
 
 module.exports = async (req, res) => {
   const { offset, limit, id, weather, by } = req.query;
-  console.log(by);
-  const weatherObj = {
-    전체: "undefined",
-    맑음: "sunny",
-    구름: "cloudy",
-    비: "rainy",
-  };
+
+  // 전체거나 / id가 있거나,
+  // weather가 전체거나, / weather가 있거나,
+  // by가 "createdAt"이거나, / "likes"이거나
+
   // const order = by !== undefined && by === "createdAt" ? "DESC" : "ASC";
 
-  try {
-    if (
-      weather !== "undefined" &&
-      weather !== "" &&
-      weather !== "전체" &&
-      id !== "0"
-    ) {
-      // 날씨에 따라 각 진료과 id별로 보내주는 쿼리
-      const data = await departments.findAll({
-        offset: Number(offset),
-        limit: Number(limit),
-        where: {
-          id,
-        },
-        attributes: [],
-        include: {
-          model: posts,
-          where: {
-            weather: weatherObj[weather],
-          },
-        },
-        // order: [`${by}`, `${order}`],
-      });
-      if (data.length !== 0) {
-        const revised = data[0].posts;
-        res.status(200).json(revised);
-      } else {
-        res.status(200).json(data);
-      }
-    } else if (id === "0") {
-      // 날씨가 지정된 경우
-      if (weather !== "undefined" && weather !== "" && weather !== "전체") {
-        const data = await posts.findAll({
-          offset: Number(offset),
-          limit: Number(limit),
-          where: {
-            weather: weatherObj[weather],
-          },
-        });
-        res.status(200).json(data);
-      } else {
-        // 날씨 관계없이 모든 글
-        const data = await posts.findAll({
-          offset: Number(offset),
-          limit: Number(limit),
-        });
-        res.status(200).json(data);
-      }
-    } else {
-      // 날씨 관계없이 진료과에 따라
-      const data = await departments.findAll({
-        offset: Number(offset),
-        limit: Number(limit),
-        where: {
-          id,
-        },
-        attributes: [],
-        include: {
-          model: posts,
-        },
-      });
+  const options = {
+    offset: Number(offset),
+    limit: Number(limit),
+    include: [
+      {
+        model: users,
+        attributes: ["nickname"],
+      },
+      {
+        model: likes,
+        attributes: ["id"],
+      },
+      {
+        model: scraps,
+        attributes: ["id"],
+      },
+    ],
+  };
 
-      if (data.length !== 0) {
-        const revised = data[0].posts;
-        res.status(200).json(revised);
-      } else {
-        res.status(200).json(data);
+  const revise = (data) => {
+    return data.map((el) => {
+      return {
+        ...el.get({ plain: true }),
+        user: el.user.nickname,
+        likes: el.likes.length,
+        scraps: el.scraps.length,
+      };
+    });
+  };
+
+  try {
+    if (id === "0") {
+      if (weather === "전체") {
+        if (by === "createdAt") {
+          const data = await posts.findAll({
+            ...options,
+            order: [["createdAt", "DESC"]],
+          });
+          res.status(200).json(revise(data));
+        } else {
+          const data = await posts.findAll({
+            ...options,
+          });
+          const sortData = revise(data).sort((a, b) => a.likes - b.likes);
+          res.status(200).json(sortData);
+        }
+      } else if (weather !== "전체") {
+        if (by === "createdAt") {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              weather,
+            },
+            order: [["createdAt", "DESC"]],
+          });
+          res.status(200).json(revise(data));
+        } else {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              weather,
+            },
+          });
+          const sortData = revise(data).sort((a, b) => a.likes - b.likes);
+          res.status(200).json(sortData);
+        }
+      }
+    } else if (id !== "0") {
+      if (weather === "전체") {
+        if (by === "createdAt") {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              departments_id: id,
+            },
+            order: [["createdAt", "DESC"]],
+          });
+          res.status(200).json(revise(data));
+        } else {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              departments_id: id,
+            },
+          });
+          const sortData = revise(data).sort((a, b) => a.likes - b.likes);
+          res.status(200).json(sortData);
+        }
+      } else if (weather !== "전체") {
+        if (by === "createdAt") {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              weather,
+              departments_id: id,
+            },
+            order: [["createdAt", "DESC"]],
+          });
+          res.status(200).json(revise(data));
+        } else {
+          const data = await posts.findAll({
+            ...options,
+            where: {
+              weather,
+              departments_id: id,
+            },
+          });
+          const sortData = revise(data).sort((a, b) => a.likes - b.likes);
+          res.status(200).json(sortData);
+        }
       }
     }
   } catch (e) {
