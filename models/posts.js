@@ -12,11 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         through: "scraps",
         foreignKey: "posts_id",
       });
-      posts.belongsToMany(models.departments, {
-        through: "posts_departments",
+      posts.hasMany(models.posts_replies, {
         foreignKey: "posts_id",
       });
-      posts.hasMany(models.posts_replies, {
+      posts.hasMany(models.departments, {
         foreignKey: "posts_id",
       });
       posts.belongsTo(models.users, {
@@ -39,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       is_reported: DataTypes.INTEGER,
       is_blocked: DataTypes.BOOLEAN,
       slug: DataTypes.STRING,
+      departments_id: DataTypes.INTEGER,
     },
     {
       sequelize,

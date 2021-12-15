@@ -5,7 +5,7 @@ faker.locale = "ko";
 
 const fakePost = (count) => {
   const result = [];
-  const weatherSample = ["sunny", "cloudy", "rainy"];
+  const weatherSample = ["맑음", "구름", "비"];
   const imgSample = [
     "https://images.unsplash.com/photo-1540287983765-d95785313eb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2382&q=80",
     "https://images.unsplash.com/photo-1429679310900-bad303d0e63a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
@@ -43,6 +43,7 @@ const fakePost = (count) => {
       slug: `${title
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, "")
         .replace(/\s/g, "-")}`,
+      departments_id: Math.floor(Math.random() * 42) + 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
