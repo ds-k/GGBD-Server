@@ -7,12 +7,6 @@ const { scraps } = require("../../models");
 module.exports = async (req, res) => {
   const { offset, limit, id, weather, by } = req.query;
 
-  // 전체거나 / id가 있거나,
-  // weather가 전체거나, / weather가 있거나,
-  // by가 "createdAt"이거나, / "likes"이거나
-
-  // const order = by !== undefined && by === "createdAt" ? "DESC" : "ASC";
-
   const options = {
     offset: Number(offset),
     limit: Number(limit),
