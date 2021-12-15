@@ -15,10 +15,8 @@ module.exports = async (req, res) => {
       include: {
         model: departments_replies,
         where: {
-          departments_id: departmentId,
           is_blocked: false,
         },
-        order: [["id", "ASC"]],
         include: {
           model: users,
           attributes: ["id", "nickname", "img"],
