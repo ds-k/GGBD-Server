@@ -2,7 +2,6 @@
 /* eslint-disable camelcase */
 const jwt = require("jsonwebtoken");
 const { posts } = require("../../models");
-const { posts_departments } = require("../../models");
 const { users } = require("../../models");
 
 module.exports = async (req, res) => {
@@ -28,6 +27,7 @@ module.exports = async (req, res) => {
 
         const result = await posts.create({
           users_id: id,
+          departments_id: departmentId,
           weather,
           title,
           description,
@@ -44,12 +44,6 @@ module.exports = async (req, res) => {
             .replace(/\s/g, "-"),
         });
 
-        if (result) {
-          await posts_departments.create({
-            posts_id: result.dataValues.id,
-            departments_id: departmentId,
-          });
-        }
         res.status(201).json({ message: "ok", slug: result.dataValues.slug });
       }
     });

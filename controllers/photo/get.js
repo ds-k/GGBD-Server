@@ -19,20 +19,15 @@ module.exports = async (req, res) => {
         const randomInt = Number(idNum) + Math.floor(Math.random() * 4) + 1;
         let randomId = randomInt % 5 === 0 ? 5 : randomInt % 5;
 
-        let enWeather;
-        if (weather === "맑음") {
-          enWeather = "sunny";
-        } else if (weather === "구름") {
-          enWeather = "cloudy";
+        if (weather === "구름") {
           randomId += 5;
-        } else {
-          enWeather = "rainy";
+        } else if (weather === "비") {
           randomId += 10;
         }
 
         const getData = await photos.findOne({
           where: {
-            weather: enWeather,
+            weather,
             id: randomId,
           },
           attributes: ["id", "img"],
