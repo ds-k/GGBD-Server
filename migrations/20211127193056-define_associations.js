@@ -14,6 +14,17 @@ module.exports = {
       onDelete: "cascade",
       onUpdate: "cascade",
     });
+    await queryInterface.addConstraint("posts", {
+      name: "departments-posts",
+      fields: ["departments_id"],
+      type: "foreign key",
+      references: {
+        table: "departments",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
 
     await queryInterface.addConstraint("posts_replies", {
       name: "users-posts_replies",
@@ -33,30 +44,6 @@ module.exports = {
       type: "foreign key",
       references: {
         table: "posts",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("posts_departments", {
-      name: "posts-posts_departments",
-      fields: ["posts_id"],
-      type: "foreign key",
-      references: {
-        table: "posts",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("posts_departments", {
-      name: "departments-posts_departments",
-      fields: ["departments_id"],
-      type: "foreign key",
-      references: {
-        table: "departments",
         field: "id",
       },
       onDelete: "cascade",
@@ -137,6 +124,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeConstraint("posts", "departments-posts");
     await queryInterface.removeConstraint("posts", "users-posts");
     await queryInterface.removeConstraint(
       "posts_replies",
@@ -145,14 +133,6 @@ module.exports = {
     await queryInterface.removeConstraint(
       "posts_replies",
       "posts-posts_replies"
-    );
-    await queryInterface.removeConstraint(
-      "posts_departments",
-      "posts-posts_departments"
-    );
-    await queryInterface.removeConstraint(
-      "posts_departments",
-      "departments-posts_departments"
     );
     await queryInterface.removeConstraint(
       "departments_replies",

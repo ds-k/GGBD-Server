@@ -33,8 +33,6 @@ module.exports = async (req, res) => {
           description,
           thumbnail,
           body: value,
-          likes: 0,
-          scraps: 0,
           public: isPublic,
           allow_reply: isActive,
           is_reported: 0,

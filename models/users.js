@@ -13,12 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       users.hasMany(models.departments_replies, {
         foreignKey: "users_id",
       });
-      users.belongsToMany(models.posts, {
-        through: "likes",
+      users.hasMany(models.likes, {
         foreignKey: "users_id",
       });
-      users.belongsToMany(models.posts, {
-        through: "scraps",
+      users.hasMany(models.scraps, {
         foreignKey: "users_id",
       });
     }
