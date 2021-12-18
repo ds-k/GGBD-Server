@@ -14,16 +14,19 @@ module.exports = async (req, res) => {
       attributes: ["id", "name", "description"],
       include: {
         model: departments_replies,
+        required: false,
         where: {
           is_blocked: false,
         },
         include: {
           model: users,
+          required: false,
           attributes: ["id", "nickname", "img"],
         },
       },
       order: [[departments_replies, "id", "DESC"]],
     });
+
     res.status(200).json(...data);
   } catch (e) {
     res.status(501).json({ message: e.message });
