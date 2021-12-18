@@ -7,6 +7,7 @@ const contact = require("./contact");
 const hospital = require("./hospital");
 const photo = require("./photo");
 const oauth = require("./oauth");
+const record = require("./record");
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use("/contact", contact);
 router.use("/hospital", hospital);
 router.use("/photo", photo);
 router.use("/oauth", oauth);
+router.use("/record", record);
 
 module.exports = router;
