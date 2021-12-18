@@ -26,7 +26,6 @@ module.exports = async (req, res) => {
         attributes: ["id"],
       },
     ],
-    // group: ["posts.id"],
     // attributes: [
     //   "*",
     //   sequelize.fn("COUNT", sequelize.col("likes.id")),
