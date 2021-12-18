@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+// const sequelize = require("sequelize");
+// const { Op } = require("sequelize");
 const { posts } = require("../../models");
 const { users } = require("../../models");
 const { likes } = require("../../models");
@@ -24,6 +26,12 @@ module.exports = async (req, res) => {
         attributes: ["id"],
       },
     ],
+    // group: ["posts.id"],
+    // attributes: [
+    //   "*",
+    //   sequelize.fn("COUNT", sequelize.col("likes.id")),
+    //   sequelize.fn("COUNT", sequelize.col("scraps.id")),
+    // ],
   };
 
   const revise = (data) => {
@@ -51,6 +59,7 @@ module.exports = async (req, res) => {
             ...options,
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
+
           res.status(200).json(sortData);
         }
       } else if (weather !== "전체") {
