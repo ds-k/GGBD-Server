@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       posts.hasMany(models.posts_replies, {
         foreignKey: "posts_id",
       });
-      posts.hasMany(models.departments, {
-        foreignKey: "posts_id",
+      posts.belongsTo(models.departments, {
+        foreignKey: "departments_id",
       });
       posts.belongsTo(models.users, {
         foreignKey: "users_id",
