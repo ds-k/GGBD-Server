@@ -5,6 +5,10 @@ const update = require("./update");
 const remove = require("./remove");
 const reply = require("./reply");
 const main = require("./main");
+const postLike = require("./postLike");
+const deleteLike = require("./deleteLike");
+const postScrap = require("./postScrap");
+const deleteScrap = require("./deleteScrap");
 
 module.exports = {
   get,
@@ -14,4 +18,8 @@ module.exports = {
   remove,
   reply,
   main,
+  postLike,
+  deleteLike,
+  postScrap,
+  deleteScrap,
 };

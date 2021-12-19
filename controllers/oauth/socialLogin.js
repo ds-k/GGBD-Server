@@ -1,6 +1,8 @@
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const { users } = require("../../models");
+const { likes } = require("../../models");
+const { scraps } = require("../../models");
 
 module.exports = async (req, res) => {
   try {
@@ -39,6 +41,18 @@ module.exports = async (req, res) => {
     const [user] = await users.findOrCreate({
       where: { social_id: userInfo.data.id },
       defaults: userInfoValue,
+      include: [
+        {
+          model: likes,
+          required: false,
+          attributes: ["posts_id"],
+        },
+        {
+          model: scraps,
+          required: false,
+          attributes: ["posts_id"],
+        },
+      ],
     });
 
     const payload = user.get();
