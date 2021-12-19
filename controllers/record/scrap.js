@@ -1,20 +1,45 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable camelcase */
-const jwt = require("jsonwebtoken");
+const { posts } = require("../../models");
 const { users } = require("../../models");
+const { likes } = require("../../models");
+const { scraps } = require("../../models");
 
 module.exports = async (req, res) => {
+  const { id } = req.query;
+
   try {
-    const { authorization } = req.headers;
-    const token = authorization.split(" ")[1];
+    const revise = (data) => {
+      return data.map((el) => {
+        return {
+          ...el.get({ plain: true }),
+          user: el.user.nickname,
+          likes: el.likes.length,
+          scraps: el.scraps.length,
+        };
+      });
+    };
 
-    await jwt.verify(token, process.env.ACCESS_SECRET, async (_, decode) => {
-      const info = await users.findOne({ where: { id: decode.id } });
+    const data = await posts.findAll({
+      include: [
+        {
+          model: users,
+          attributes: ["nickname"],
+        },
+        {
+          model: likes,
+          attributes: ["id"],
+        },
+        {
+          model: scraps,
+          attributes: ["id"],
+          where: { users_id: id },
+        },
+      ],
 
-      if (info) {
-        await res.status(201).json("바보");
-      }
+      order: [["createdAt", "DESC"]],
     });
+    res.status(200).json(revise(data));
   } catch (e) {
     res.status(404).json({ message: e.message });
   }
