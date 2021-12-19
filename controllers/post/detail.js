@@ -28,14 +28,12 @@ module.exports = async (req, res) => {
     ],
   });
   const revise = (data) => {
-    return data.map((el) => {
-      return {
-        ...el.get({ plain: true }),
-        user: el.user.nickname,
-        likes: el.likes.length,
-        scraps: el.scraps.length,
-      };
-    });
+    return {
+      ...data.get({ plain: true }),
+      user: data.user.nickname,
+      likes: data.likes.length,
+      scraps: data.scraps.length,
+    };
   };
 
   res.status(200).json(revise(postData));
