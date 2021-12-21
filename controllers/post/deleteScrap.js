@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
 
       if (info) {
         await scraps.destroy({ where: { users_id, posts_id } });
-        res.status(200).json({ posts_id: { posts_id } });
+        res.status(200).json({ posts_id });
       }
     });
   } catch (e) {
