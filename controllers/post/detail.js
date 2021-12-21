@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 const { posts } = require("../../models");
 const { users } = require("../../models");
 const { likes } = require("../../models");
 const { scraps } = require("../../models");
 const { departments } = require("../../models");
+const { posts_replies } = require("../../models");
 
 module.exports = async (req, res) => {
   const { slug } = req.params;
@@ -25,7 +27,20 @@ module.exports = async (req, res) => {
         model: scraps,
         attributes: ["id"],
       },
+      {
+        model: posts_replies,
+        required: false,
+        where: {
+          is_blocked: false,
+        },
+        include: {
+          model: users,
+          required: false,
+          attributes: ["id", "nickname", "img"],
+        },
+      },
     ],
+    order: [[posts_replies, "id", "DESC"]],
   });
   const revise = (data) => {
     return {
