@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
           posts_id,
         });
 
-        res.status(201).json({ posts_id: { posts_id } });
+        res.status(201).json({ posts_id });
       }
     });
   } catch (e) {
