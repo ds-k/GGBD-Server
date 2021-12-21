@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "posts_id",
       });
       posts_replies.belongsTo(models.users, {
-        foreignKey: "users",
+        foreignKey: "users_id",
       });
     }
   }
