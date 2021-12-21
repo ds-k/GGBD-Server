@@ -27,6 +27,7 @@ const fakePost = (count) => {
   for (let i = 1; i <= count; i += 1) {
     const title = faker.lorem.sentence(4);
     const id = Math.floor(Math.random() * 10) + 1;
+
     const postData = {
       users_id: id,
       weather: weatherSample[i % 3],
@@ -38,11 +39,10 @@ const fakePost = (count) => {
       allow_reply: true,
       is_reported: 0,
       is_blocked: false,
-      // eslint-disable-next-line new-cap
-      slug: `${id} ${new Date.toLocaleDateString().replaceAll(
-        ". ",
-        ""
-      )} ${title}`
+      slug: `${id} ${new Date()
+        .toLocaleDateString()
+        .replaceAll(". ", "")} ${title}`
+        // eslint-disable-next-line no-useless-escape
         .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, "")
         .replace(/\s/g, "-"),
       departments_id: Math.floor(Math.random() * 42) + 1,
