@@ -50,12 +50,18 @@ module.exports = async (req, res) => {
         if (by === "createdAt") {
           const data = await posts.findAll({
             ...options,
+            where: {
+              public: true,
+            },
             order: [["createdAt", "DESC"]],
           });
           res.status(200).json(revise(data));
         } else {
           const data = await posts.findAll({
             ...options,
+            where: {
+              public: true,
+            },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
 
@@ -67,6 +73,7 @@ module.exports = async (req, res) => {
             ...options,
             where: {
               weather,
+              public: true,
             },
             order: [["createdAt", "DESC"]],
           });
@@ -76,6 +83,7 @@ module.exports = async (req, res) => {
             ...options,
             where: {
               weather,
+              public: true,
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
@@ -89,6 +97,7 @@ module.exports = async (req, res) => {
             ...options,
             where: {
               departments_id: id,
+              public: true,
             },
             order: [["createdAt", "DESC"]],
           });
@@ -98,6 +107,7 @@ module.exports = async (req, res) => {
             ...options,
             where: {
               departments_id: id,
+              public: true,
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
@@ -110,6 +120,7 @@ module.exports = async (req, res) => {
             where: {
               weather,
               departments_id: id,
+              public: true,
             },
             order: [["createdAt", "DESC"]],
           });
@@ -120,6 +131,7 @@ module.exports = async (req, res) => {
             where: {
               weather,
               departments_id: id,
+              public: true,
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
