@@ -37,7 +37,10 @@ module.exports = async (req, res) => {
           allow_reply: isActive,
           is_reported: 0,
           is_blocked: false,
-          slug: title
+          slug: `${id} ${new Date()
+            .toLocaleDateString()
+            .replaceAll(". ", "")} ${title}`
+            // eslint-disable-next-line no-useless-escape
             .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim, "")
             .replace(/\s/g, "-"),
         });
