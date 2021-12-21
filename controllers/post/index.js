@@ -9,6 +9,7 @@ const postLike = require("./postLike");
 const deleteLike = require("./deleteLike");
 const postScrap = require("./postScrap");
 const deleteScrap = require("./deleteScrap");
+const search = require("./search");
 
 module.exports = {
   get,
@@ -22,4 +23,5 @@ module.exports = {
   deleteLike,
   postScrap,
   deleteScrap,
+  search,
 };

@@ -12,6 +12,7 @@ const {
   deleteLike,
   postScrap,
   deleteScrap,
+  search,
 } = require("../controllers/post");
 
 router.get("/:department", get); // * 글 정보 전체 가져오기
@@ -25,5 +26,6 @@ router.post("/postLike", postLike); // * 응원하기
 router.delete("/deleteLike", deleteLike); // * 응원 취소하기
 router.post("/postScrap", postScrap); // * 스크랩하기
 router.delete("/deleteScrap", deleteScrap); // * 스크랩 취소하기
+router.get("/search/:q", search); // * 글 검색하기
 
 module.exports = router;
