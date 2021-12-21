@@ -48,12 +48,18 @@ module.exports = async (req, res) => {
     if (order === "created-at") {
       const data = await posts.findAll({
         ...options,
+        where: {
+          public: true,
+        },
         order: [["createdAt", "DESC"]],
       });
       res.status(200).json(revise(data));
     } else if (order === "likes") {
       const data = await posts.findAll({
         ...options,
+        where: {
+          public: true,
+        },
       });
       const sortData = revise(data).sort((a, b) => a.likes - b.likes);
       res.status(200).json(sortData);

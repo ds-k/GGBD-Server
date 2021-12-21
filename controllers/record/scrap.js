@@ -36,7 +36,9 @@ module.exports = async (req, res) => {
           where: { users_id: id },
         },
       ],
-
+      where: {
+        public: true,
+      },
       order: [["createdAt", "DESC"]],
     });
     res.status(200).json(revise(data));
