@@ -27,7 +27,7 @@ router.post("/postLike", postLike); // * 응원하기
 router.delete("/deleteLike", deleteLike); // * 응원 취소하기
 router.post("/postScrap", postScrap); // * 스크랩하기
 router.delete("/deleteScrap", deleteScrap); // * 스크랩 취소하기
-router.get("/search/:q", search); // * 글 검색하기
+router.get("/search/:query", search); // * 글 검색하기
 router.post("/reply", postReply); // * 댓글 작성하기
 router.patch("/reply", patchReply); // * 댓글 수정하기
 router.delete("/reply", removeReply); // * 댓글 삭제하기
