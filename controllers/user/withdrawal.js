@@ -9,11 +9,9 @@ module.exports = async (req, res) => {
       const info = await users.findOne({ where: { id: decode.id } });
 
       if (info) {
-        await users.update(req.body, {
-          where: { id: decode.id },
-        });
-        const userInfo = await users.findOne({ where: { id: decode.id } });
-        res.status(201).send(userInfo);
+        await users.destroy({ where: { id: decode.id } });
+
+        res.status(200).send({ message: "회원탈퇴 되었습니다." });
       }
     });
   } catch (e) {
