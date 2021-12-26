@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
       };
     }
 
-    const [user] = await users.findOrCreate({
+    await users.findOrCreate({
       where: { social_id: userInfo.data.id },
       defaults: userInfoValue,
       include: [
@@ -55,7 +55,23 @@ module.exports = async (req, res) => {
       ],
     });
 
-    const payload = user.get();
+    const userData = await users.findOne({
+      where: { social_id: userInfo.data.id },
+      include: [
+        {
+          model: likes,
+          required: false,
+          attributes: ["posts_id"],
+        },
+        {
+          model: scraps,
+          required: false,
+          attributes: ["posts_id"],
+        },
+      ],
+    });
+
+    const payload = userData.get();
 
     const accessToken = await jwt.sign(payload, process.env.ACCESS_SECRET, {
       expiresIn: "12h",
