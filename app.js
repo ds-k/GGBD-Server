@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const corsOption = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "http://localhost:3001"],
   credentials: true,
   method: ["GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"],
 };

@@ -1,15 +1,31 @@
 const get = require("./get");
 const detail = require("./detail");
 const post = require("./post");
-const update = require("./update");
+const patch = require("./patch");
 const remove = require("./remove");
-const reply = require("./reply");
+const main = require("./main");
+const postLike = require("./postLike");
+const deleteLike = require("./deleteLike");
+const postScrap = require("./postScrap");
+const deleteScrap = require("./deleteScrap");
+const search = require("./search");
+const postReply = require("./postReply");
+const patchReply = require("./patchReply");
+const removeReply = require("./removeReply");
 
 module.exports = {
   get,
   detail,
   post,
-  update,
+  patch,
   remove,
-  reply,
+  main,
+  postLike,
+  deleteLike,
+  postScrap,
+  deleteScrap,
+  search,
+  postReply,
+  patchReply,
+  removeReply,
 };

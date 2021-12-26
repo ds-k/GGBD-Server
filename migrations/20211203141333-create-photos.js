@@ -1,19 +1,20 @@
 /* eslint-disable */
+
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("posts_departments", {
+    await queryInterface.createTable("photos", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      posts_id: {
-        type: Sequelize.INTEGER,
+      img: {
+        type: Sequelize.STRING,
       },
-      departments_id: {
-        type: Sequelize.INTEGER,
+      weather: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +27,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("posts_departments");
+    await queryInterface.dropTable("photos");
   },
 };
