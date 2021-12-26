@@ -26,12 +26,6 @@ module.exports = async (req, res) => {
     attributes: {
       exclude: ["body"],
     },
-    // group: ["posts.id"],
-    // attributes: [
-    //   "*",
-    //   sequelize.fn("COUNT", sequelize.col("likes.id")),
-    //   sequelize.fn("COUNT", sequelize.col("scraps.id")),
-    // ],
   };
   const revise = (data) => {
     return data.map((el) => {
