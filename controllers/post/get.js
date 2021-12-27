@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-// const sequelize = require("sequelize");
-// const { Op } = require("sequelize");
 const { posts } = require("../../models");
 const { users } = require("../../models");
 const { likes } = require("../../models");
@@ -10,8 +8,6 @@ module.exports = async (req, res) => {
   const { offset, limit, id, weather, by } = req.query;
 
   const options = {
-    offset: Number(offset),
-    limit: Number(limit),
     include: [
       {
         model: users,
@@ -26,11 +22,6 @@ module.exports = async (req, res) => {
         attributes: ["id"],
       },
     ],
-    // attributes: [
-    //   "*",
-    //   sequelize.fn("COUNT", sequelize.col("likes.id")),
-    //   sequelize.fn("COUNT", sequelize.col("scraps.id")),
-    // ],
   };
 
   const revise = (data) => {
@@ -54,6 +45,8 @@ module.exports = async (req, res) => {
               public: true,
             },
             order: [["createdAt", "DESC"]],
+            offset: Number(offset),
+            limit: Number(limit),
           });
           res.status(200).json(revise(data));
         } else {
@@ -65,7 +58,7 @@ module.exports = async (req, res) => {
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
 
-          res.status(200).json(sortData);
+          res.status(200).json(sortData.slice(offset, limit));
         }
       } else if (weather !== "전체") {
         if (by === "createdAt") {
@@ -75,6 +68,8 @@ module.exports = async (req, res) => {
               weather,
               public: true,
             },
+            offset: Number(offset),
+            limit: Number(limit),
             order: [["createdAt", "DESC"]],
           });
           res.status(200).json(revise(data));
@@ -87,7 +82,7 @@ module.exports = async (req, res) => {
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
-          res.status(200).json(sortData);
+          res.status(200).json(sortData.slice(offset, limit));
         }
       }
     } else if (id !== "0") {
@@ -99,6 +94,8 @@ module.exports = async (req, res) => {
               departments_id: id,
               public: true,
             },
+            offset: Number(offset),
+            limit: Number(limit),
             order: [["createdAt", "DESC"]],
           });
           res.status(200).json(revise(data));
@@ -111,7 +108,7 @@ module.exports = async (req, res) => {
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
-          res.status(200).json(sortData);
+          res.status(200).json(sortData.slice(offset, limit));
         }
       } else if (weather !== "전체") {
         if (by === "createdAt") {
@@ -122,6 +119,8 @@ module.exports = async (req, res) => {
               departments_id: id,
               public: true,
             },
+            offset: Number(offset),
+            limit: Number(limit),
             order: [["createdAt", "DESC"]],
           });
           res.status(200).json(revise(data));
@@ -135,7 +134,7 @@ module.exports = async (req, res) => {
             },
           });
           const sortData = revise(data).sort((a, b) => a.likes - b.likes);
-          res.status(200).json(sortData);
+          res.status(200).json(sortData.slice(offset, limit));
         }
       }
     }
