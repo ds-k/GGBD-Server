@@ -25,14 +25,14 @@ module.exports = async (req, res) => {
       userInfoValue = {
         ...userInfoValue,
         nickname: userInfo.data.properties.nickname,
-        img: userInfo.data.properties.profile_image,
+        img: userInfo.data.properties.profile_image ?? "guest",
         loginType: "kakao",
         description: "한줄 소개를 적어주세요.",
       };
     } else {
       userInfoValue = {
         nickname: userInfo.data.given_name,
-        img: userInfo.data.picture,
+        img: userInfo.data.picture ?? "guest",
         loginType: "google",
         description: "한줄 소개를 적어주세요.",
       };
