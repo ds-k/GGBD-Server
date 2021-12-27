@@ -7,8 +7,6 @@ module.exports = async (req, res) => {
   const { order } = req.params;
 
   const options = {
-    offset: 0,
-    limit: 4,
     include: [
       {
         model: users,
@@ -45,6 +43,8 @@ module.exports = async (req, res) => {
         where: {
           public: true,
         },
+        offset: 0,
+        limit: 4,
         order: [["createdAt", "DESC"]],
       });
       res.status(200).json(revise(data));
@@ -56,7 +56,7 @@ module.exports = async (req, res) => {
         },
       });
       const sortData = revise(data).sort((a, b) => a.likes - b.likes);
-      res.status(200).json(sortData);
+      res.status(200).json(sortData.slice(0, 4));
     }
   } catch (e) {
     res.status(500).json({ message: e.message });
